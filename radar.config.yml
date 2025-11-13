@@ -1,0 +1,36 @@
+# Personalized GitHub Radar Configuration
+# This file defines your personalized radar parameters for GitHub trending repositories
+
+# Target programming languages to monitor
+# If empty, monitors all languages
+target_languages:
+  - python
+  - rust
+  - jupyter-notebook
+  - typescript
+
+# Topic keywords for intelligent filtering
+topic_keywords:
+  - Neuro-AI
+  - BCI
+  - LLM Agent
+  - Agentic
+  - AI
+  - Machine Learning
+  - Deep Learning
+
+# OpenAI API Key (optional, for AI summaries)
+# This should be provided via GitHub Secrets as OPENAI_API_KEY
+# openai_api_key: "your-openai-api-key-here"
+
+# GitHub API Token (required, provided via GitHub Secrets as GITHUB_TOKEN)
+# github_token: "your-github-token-here"
+
+# Issue configuration
+issue_label: "trending-daily"  # or "trending-weekly"
+issue_lang: ""  # Leave empty for personalized radar
+
+# Analysis settings
+min_relevance_score: 1  # Minimum score to include in report
+enable_ai_summaries: true  # Enable AI-generated summaries
+max_ai_summaries: 10  # Maximum number of AI summaries to generate per run

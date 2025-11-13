@@ -1,143 +1,219 @@
-<div align="center"><img src="https://user-images.githubusercontent.com/1473072/33020417-45869a00-ce0f-11e7-9faa-368445d463f7.gif" alt="Stars counter"/></div>
-<h1 align="center">GitHub Trending Repos</h1>
-<a href="https://circleci.com/gh/vitalets/github-trending-repos"><img src="https://circleci.com/gh/vitalets/github-trending-repos.svg?style=svg" alt="CircleCI"/></a>
+# 🎯 Personalized GitHub Radar
 
-Here you can subscribe to new [GitHub trending repositories](https://github.com/trending) in your favorite programming language.
-Updates come as [GitHub notifications] once a day or a week.
+**Transform GitHub trending into your personal discovery engine**
 
-<!-- AUTO-GENERATED-CONTENT:START (TOC) -->
-- [How it works](#how-it-works)
-- [How to subscribe](#how-to-subscribe)
-- [Schedule](#schedule)
-- [Examples](#examples)
-- [Available languages](#available-languages)
-- [Specials](#specials)
-- [Watching the repo](#watching-the-repo)
-- [Is it better than RSS / newsletter / etc?](#is-it-better-than-rss--newsletter--etc)
-- [Alternatives](#alternatives)
-- [Related links](#related-links)
-<!-- AUTO-GENERATED-CONTENT:END -->
+## Overview
 
-## How it works
-1. Every issue in this repo is related to a particular programming language
-2. Scheduled script once a day grabs [github.com/trending](https://github.com/trending) for each language and drops a comment to the corresponding issue
-3. All issue subscribers receive pretty GitHub notification with new trends in the web interface <img alt="notification icon" valign="bottom" src="https://user-images.githubusercontent.com/1473072/32723023-01555c78-c87d-11e7-8190-6bf3bb0ec405.png"> or by email
+The Personalized GitHub Radar extends the original GitHub trending repos project with intelligent filtering and analysis capabilities. Instead of getting generic trending repositories, you receive **curated recommendations** based on your specific interests and preferred programming languages.
 
-## How to subscribe
-To become a subscriber please explore [available languages](https://github.com/vitalets/github-trending-repos#available-languages)
-and press <img alt="subscribe button" valign="middle" src="https://user-images.githubusercontent.com/1473072/32487280-46f4489c-c3ba-11e7-82d7-cfe073cac8d1.png"> button in the corresponding issues.
+## Core Architecture: Five Modules
 
-## Schedule
-You can choose daily or weekly notifications:
-* Daily: runs **every day at 00:00 UTC**, see issues labeled with [trending-daily](https://github.com/vitalets/github-trending-repos/labels/trending-daily)
-* Weekly: runs **every friday at 03:00 UTC**, see issues labeled with [trending-weekly](https://github.com/vitalets/github-trending-repos/labels/trending-weekly)
+### 1. Control Panel (Config) - `radar.config.yml`
+Defines your personalized radar parameters in the repository root.
 
-## Examples
-Once a day (or a week) you get a notification in GitHub web interface:  
-![Example of web notification](https://user-images.githubusercontent.com/1473072/32488601-4295b138-c3be-11e7-8eb2-18a624c54ca2.png)
+### 2. Extractor - Modified Trends Fetcher
+Fetches "All Languages" trending repositories to get comprehensive data for analysis.
 
-After click you are navigated to the first unread comment with new trends in the selected language:  
-![Example of comment](https://user-images.githubusercontent.com/1473072/33029917-f054b67c-ce2a-11e7-9b42-a7ee16d98228.png)
+### 3. Analyzer - Intelligent Processing Brain
+- **Language Filter**: Filters repositories by your target programming languages
+- **Content Enricher**: Fetches README content and metadata from GitHub API
+- **Smart Analyzer**: Scores relevance based on topic keywords and generates AI summaries
 
-## Available languages
-Many languages are available for subscription:
-<!-- AUTO-GENERATED-CONTENT:START (LANGS) -->
-* 1C Enterprise ([daily](https://github.com/vitalets/github-trending-repos/issues/43))
-* C ([daily](https://github.com/vitalets/github-trending-repos/issues/33) | [weekly](https://github.com/vitalets/github-trending-repos/issues/21))
-* C# ([daily](https://github.com/vitalets/github-trending-repos/issues/31) | [weekly](https://github.com/vitalets/github-trending-repos/issues/19))
-* C++ ([daily](https://github.com/vitalets/github-trending-repos/issues/29) | [weekly](https://github.com/vitalets/github-trending-repos/issues/17))
-* CSS ([daily](https://github.com/vitalets/github-trending-repos/issues/30) | [weekly](https://github.com/vitalets/github-trending-repos/issues/18))
-* Clojure ([daily](https://github.com/vitalets/github-trending-repos/issues/104) | [weekly](https://github.com/vitalets/github-trending-repos/issues/105))
-* Common Lisp ([weekly](https://github.com/vitalets/github-trending-repos/issues/91))
-* Crystal ([daily](https://github.com/vitalets/github-trending-repos/issues/80) | [weekly](https://github.com/vitalets/github-trending-repos/issues/81))
-* D ([weekly](https://github.com/vitalets/github-trending-repos/issues/136))
-* Dart ([daily](https://github.com/vitalets/github-trending-repos/issues/102) | [weekly](https://github.com/vitalets/github-trending-repos/issues/103))
-* Elixir ([daily](https://github.com/vitalets/github-trending-repos/issues/82) | [weekly](https://github.com/vitalets/github-trending-repos/issues/83))
-* Elm ([daily](https://github.com/vitalets/github-trending-repos/issues/87) | [weekly](https://github.com/vitalets/github-trending-repos/issues/88))
-* Emacs Lisp ([daily](https://github.com/vitalets/github-trending-repos/issues/89) | [weekly](https://github.com/vitalets/github-trending-repos/issues/90))
-* Erlang ([daily](https://github.com/vitalets/github-trending-repos/issues/98) | [weekly](https://github.com/vitalets/github-trending-repos/issues/99))
-* F# ([weekly](https://github.com/vitalets/github-trending-repos/issues/84))
-* Fortran ([daily](https://github.com/vitalets/github-trending-repos/issues/126) | [weekly](https://github.com/vitalets/github-trending-repos/issues/127))
-* GDScript ([weekly](https://github.com/vitalets/github-trending-repos/issues/161))
-* Go ([daily](https://github.com/vitalets/github-trending-repos/issues/32) | [weekly](https://github.com/vitalets/github-trending-repos/issues/20))
-* HCL ([daily](https://github.com/vitalets/github-trending-repos/issues/175) | [weekly](https://github.com/vitalets/github-trending-repos/issues/176))
-* Haskell ([daily](https://github.com/vitalets/github-trending-repos/issues/46) | [weekly](https://github.com/vitalets/github-trending-repos/issues/47))
-* Haxe ([daily](https://github.com/vitalets/github-trending-repos/issues/111) | [weekly](https://github.com/vitalets/github-trending-repos/issues/112))
-* Java ([daily](https://github.com/vitalets/github-trending-repos/issues/8) | [weekly](https://github.com/vitalets/github-trending-repos/issues/12))
-* JavaScript ([daily](https://github.com/vitalets/github-trending-repos/issues/5) | [weekly](https://github.com/vitalets/github-trending-repos/issues/16))
-* Julia ([daily](https://github.com/vitalets/github-trending-repos/issues/139) | [weekly](https://github.com/vitalets/github-trending-repos/issues/140))
-* Jupyter Notebook ([daily](https://github.com/vitalets/github-trending-repos/issues/109) | [weekly](https://github.com/vitalets/github-trending-repos/issues/110))
-* Kotlin ([daily](https://github.com/vitalets/github-trending-repos/issues/92) | [weekly](https://github.com/vitalets/github-trending-repos/issues/93))
-* Lua ([daily](https://github.com/vitalets/github-trending-repos/issues/76) | [weekly](https://github.com/vitalets/github-trending-repos/issues/77))
-* MQL4 ([weekly](https://github.com/vitalets/github-trending-repos/issues/133))
-* MQL5 ([weekly](https://github.com/vitalets/github-trending-repos/issues/134))
-* Nim ([daily](https://github.com/vitalets/github-trending-repos/issues/78) | [weekly](https://github.com/vitalets/github-trending-repos/issues/79))
-* Nix ([daily](https://github.com/vitalets/github-trending-repos/issues/96) | [weekly](https://github.com/vitalets/github-trending-repos/issues/97))
-* OCaml ([daily](https://github.com/vitalets/github-trending-repos/issues/85) | [weekly](https://github.com/vitalets/github-trending-repos/issues/86))
-* Objective-C ([daily](https://github.com/vitalets/github-trending-repos/issues/38) | [weekly](https://github.com/vitalets/github-trending-repos/issues/26))
-* PHP ([daily](https://github.com/vitalets/github-trending-repos/issues/10) | [weekly](https://github.com/vitalets/github-trending-repos/issues/14))
-* Pascal ([weekly](https://github.com/vitalets/github-trending-repos/issues/41))
-* Perl ([daily](https://github.com/vitalets/github-trending-repos/issues/94) | [weekly](https://github.com/vitalets/github-trending-repos/issues/95))
-* PowerShell ([daily](https://github.com/vitalets/github-trending-repos/issues/106) | [weekly](https://github.com/vitalets/github-trending-repos/issues/107))
-* Prolog ([weekly](https://github.com/vitalets/github-trending-repos/issues/108))
-* PureScript ([daily](https://github.com/vitalets/github-trending-repos/issues/100) | [weekly](https://github.com/vitalets/github-trending-repos/issues/101))
-* Python ([daily](https://github.com/vitalets/github-trending-repos/issues/7) | [weekly](https://github.com/vitalets/github-trending-repos/issues/11))
-* R ([weekly](https://github.com/vitalets/github-trending-repos/issues/39))
-* Racket ([weekly](https://github.com/vitalets/github-trending-repos/issues/115))
-* Ruby ([daily](https://github.com/vitalets/github-trending-repos/issues/9) | [weekly](https://github.com/vitalets/github-trending-repos/issues/13))
-* Rust ([daily](https://github.com/vitalets/github-trending-repos/issues/44) | [weekly](https://github.com/vitalets/github-trending-repos/issues/45))
-* Scala ([daily](https://github.com/vitalets/github-trending-repos/issues/37) | [weekly](https://github.com/vitalets/github-trending-repos/issues/25))
-* Shell ([daily](https://github.com/vitalets/github-trending-repos/issues/35) | [weekly](https://github.com/vitalets/github-trending-repos/issues/23))
-* Solidity ([daily](https://github.com/vitalets/github-trending-repos/issues/151) | [weekly](https://github.com/vitalets/github-trending-repos/issues/152))
-* Svelte ([daily](https://github.com/vitalets/github-trending-repos/issues/159) | [weekly](https://github.com/vitalets/github-trending-repos/issues/160))
-* Swift ([daily](https://github.com/vitalets/github-trending-repos/issues/36) | [weekly](https://github.com/vitalets/github-trending-repos/issues/24))
-* TeX ([daily](https://github.com/vitalets/github-trending-repos/issues/177) | [weekly](https://github.com/vitalets/github-trending-repos/issues/178))
-* Terraform ([daily](https://github.com/vitalets/github-trending-repos/issues/180) | [weekly](https://github.com/vitalets/github-trending-repos/issues/181))
-* TypeScript ([daily](https://github.com/vitalets/github-trending-repos/issues/34) | [weekly](https://github.com/vitalets/github-trending-repos/issues/22))
-* Vala ([daily](https://github.com/vitalets/github-trending-repos/issues/168) | [weekly](https://github.com/vitalets/github-trending-repos/issues/169))
-* Verilog ([daily](https://github.com/vitalets/github-trending-repos/issues/50))
-* Vim script ([daily](https://github.com/vitalets/github-trending-repos/issues/118) | [weekly](https://github.com/vitalets/github-trending-repos/issues/119))
-* Vue ([daily](https://github.com/vitalets/github-trending-repos/issues/128) | [weekly](https://github.com/vitalets/github-trending-repos/issues/129))
-* Zig ([daily](https://github.com/vitalets/github-trending-repos/issues/162) | [weekly](https://github.com/vitalets/github-trending-repos/issues/163))
-<!-- AUTO-GENERATED-CONTENT:END -->
+### 4. Formatter - Personalized Report Generator
+Creates beautiful Markdown reports with relevance scores, matched keywords, and AI insights.
 
-If you'd like to add new language - feel free to [create issue by this template](https://github.com/vitalets/github-trending-repos/issues/new?title=Please%20add%20%7Blang%7D&body=%7Blink%20to%20GitHub%20trending%20page%7D%20%20%0A-%20%5B%20%5D%20daily%0A-%20%5B%20%5D%20weekly).
+### 5. Scheduler & Reporter - Existing Infrastructure
+Reuses the proven GitHub issue-based notification system.
 
-## Specials
+## Quick Start
 
-* Trending repos across **all languages** ([daily](https://github.com/vitalets/github-trending-repos/issues/6) | [weekly](https://github.com/vitalets/github-trending-repos/issues/15))
-* Trending repos in **unknown languages** ([daily](https://github.com/vitalets/github-trending-repos/issues/28) | [weekly](https://github.com/vitalets/github-trending-repos/issues/27))
+### 1. Create Your Radar Configuration
 
-## Watching the repo
-If you start watching this repo - you will receive **many** notifications about all trends in all languages.
-The recommended way is to selectively subscribe on issues you are interested in.
+Create `radar.config.yml` in the repository root:
 
-## Is it better than RSS / newsletter / etc?
-It's a matter of taste. Personally I found it convenient by the following reasons:
+```yaml
+# Personalized GitHub Radar Configuration
+target_languages:
+  - python
+  - rust
+  - jupyter-notebook
+  - typescript
 
-* I'm dealing with GitHub notifications anyway and trends are seamlessly integrated in my daily workflow
-* I can quickly overview trends without registering somewhere and watching ads
-* I can view non-english entries that are automatically translated
+topic_keywords:
+  - Neuro-AI
+  - BCI
+  - LLM Agent
+  - Agentic
+  - AI
+  - Machine Learning
+  - Deep Learning
 
-## Alternatives
-* Newsletter:
-  * [Official GitHub Explore Newsletter](https://github.com/explore#newsletter)
-  * [Changelog Nightly](https://changelog.com/nightly)
-  * [GitLogs](http://www.gitlogs.com/)
-* Twitter bot: [@TrendingGithub](https://twitter.com/TrendingGithub)
-* Browser extension: [Githunt](https://github.com/kamranahmedse/githunt)
-* RSS feed: [github-trends.ryotarai.info](http://github-trends.ryotarai.info/)
-* Webpage: [gitmostwanted.com/trending](http://gitmostwanted.com/trending/)
-* Webpage + GraphiQL API: [https://trends.now.sh](https://trends.now.sh)
+# Optional: Enable AI summaries
+enable_ai_summaries: true
+min_relevance_score: 1
+```
 
-## Related links
-* [Discussion on Hacker News](https://news.ycombinator.com/item?id=16446250#16446992)
-* [Here are 5 ways you can keep track of trending repositories on GitHub](https://medium.freecodecamp.org/five-ways-of-tracking-trends-on-github-63940fca63b)
+### 2. Test Your Radar
 
-&copy; 2017-2022 [Vitaliy Potapov](https://github.com/vitalets)
+```bash
+# Test with mock data
+npm run radar-test
 
-<a href="https://www.buymeacoffee.com/vitpotapov" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+# Run in development mode
+npm run radar-dev
 
-[trending-daily]: https://github.com/vitalets/github-trending-repos/labels/trending-daily
-[trending-weekly]: https://github.com/vitalets/github-trending-repos/labels/trending-weekly
-[GitHub notifications]: https://help.github.com/articles/accessing-your-notifications/
+# Run full radar (requires GitHub tokens)
+npm run radar
+```
+
+### 3. Configure Environment Variables
+
+For production use, set these environment variables:
+
+```bash
+# Required
+GITHUB_TOKEN=your_github_token
+
+# Optional: For AI summaries
+OPENAI_API_KEY=your_openai_api_key
+```
+
+## Configuration Options
+
+### Target Languages
+- Specify programming languages you're interested in
+- Empty array = monitor all languages
+- Example: `['python', 'rust', 'typescript']`
+
+### Topic Keywords
+- Keywords that match your interests
+- Searched in repository descriptions and README content
+- Example: `['AI', 'Machine Learning', 'LLM']`
+
+### Analysis Settings
+- `min_relevance_score`: Minimum score to include in report (default: 1)
+- `enable_ai_summaries`: Generate AI insights (requires OpenAI API key)
+- `max_ai_summaries`: Limit AI summaries per run (default: 10)
+
+## How It Works
+
+### 1. Data Collection
+- Fetches trending repositories from "All Languages" page
+- Gets comprehensive dataset for analysis
+
+### 2. Language Filtering
+- Filters repositories by your target languages
+- Skips irrelevant programming languages
+
+### 3. Content Enrichment
+- Fetches README content via GitHub API
+- Gathers additional metadata (topics, stars, forks)
+
+### 4. Smart Analysis
+- **Keyword Matching**: Scores repositories based on topic keyword matches
+- **Relevance Scoring**: Description matches = +5, README matches = +1, Topic matches = +3
+- **AI Summaries**: Optional GPT-powered insights for high-scoring repositories
+
+### 5. Report Generation
+- Filters repositories by minimum relevance score
+- Sorts by relevance score (highest first)
+- Generates personalized Markdown report
+- Posts to GitHub issue for notifications
+
+## Example Output
+
+```markdown
+## 🎯 Personalized GitHub Radar - 2025/11/13
+
+**3 relevant repositories** matching your interests today!
+
+### 📊 Radar Configuration
+- **Target Languages:** python, rust, jupyter-notebook
+- **Topic Keywords:** Neuro-AI, BCI, LLM Agent, AI
+- **Minimum Relevance Score:** 1
+
+### 🔥 [microsoft/Neuro-AI-Toolkit](https://github.com/...) **+42** stars today • Python
+
+**Relevance Score:** 15
+**Matched Keywords:** Neuro-AI, BCI, AI
+
+A comprehensive toolkit for Neuro-AI research and development
+
+🤖 **AI Insight:** This repository provides essential tools for Neuro-AI research...
+
+⭐ **Stars:** 1500 • 🍴 **Forks:** 230
+```
+
+## Integration with Existing System
+
+The personalized radar seamlessly integrates with the existing infrastructure:
+
+- **Same Notification System**: Uses GitHub issues and native notifications
+- **Fallback Mechanism**: Falls back to standard updates if radar config is missing
+- **Scheduled Execution**: Works with existing CircleCI/GitHub Actions workflows
+- **Dry Run Support**: Respects existing dry-run configuration
+
+## Advanced Usage
+
+### Custom Scoring
+Modify the scoring algorithm in `smart-analyzer.js`:
+- Adjust weights for description vs README matches
+- Add custom scoring rules
+- Implement domain-specific relevance algorithms
+
+### AI Integration
+Enable OpenAI integration for intelligent summaries:
+1. Set `OPENAI_API_KEY` environment variable
+2. Set `enable_ai_summaries: true` in config
+3. Customize AI prompts in `smart-analyzer.js`
+
+### Batch Processing
+The system processes repositories in batches to respect GitHub API rate limits:
+- Default batch size: 5 repositories
+- Configurable delays between batches
+- Automatic rate limit checking
+
+## Troubleshooting
+
+### Common Issues
+
+**No repositories found**
+- Check your topic keywords are specific enough
+- Verify target languages are correctly spelled
+- Try lowering the `min_relevance_score`
+
+**GitHub API rate limits**
+- Ensure `GITHUB_TOKEN` is set with sufficient permissions
+- The system automatically handles rate limiting
+- Consider using a GitHub App token for higher limits
+
+**AI summaries not working**
+- Verify `OPENAI_API_KEY` is set correctly
+- Check that `enable_ai_summaries` is true
+- Ensure you have OpenAI API credits
+
+## Performance Considerations
+
+- **API Calls**: Each repository requires 2-3 GitHub API calls
+- **Rate Limits**: Batch processing respects GitHub's 5000 requests/hour limit
+- **Processing Time**: Analysis takes ~1-2 seconds per repository
+- **Memory Usage**: README content is limited to 5000 characters
+
+## Extending the Radar
+
+The modular architecture makes it easy to extend:
+
+- Add new analysis modules
+- Implement custom scoring algorithms
+- Integrate additional data sources
+- Create specialized formatters
+
+## Contributing
+
+Contributions are welcome! Key areas for improvement:
+
+- Additional analysis algorithms
+- More sophisticated keyword matching
+- Integration with other AI services
+- Enhanced reporting formats
+- Performance optimizations

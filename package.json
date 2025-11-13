@@ -20,7 +20,11 @@
     "test-daily": "TRENDING_LABEL=trending-daily TRENDING_LANG=javascript node scripts/update-issues",
     "test-weekly": "TRENDING_LABEL=trending-weekly TRENDING_LANG=javascript node scripts/update-issues",
     "test-clean": "TRENDING_LABEL=trending-daily TRENDING_LANG=javascript node scripts/clean-issues",
-    "test-all": "npm run test-helpers && npm run test-daily && npm run test-weekly && npm run test-clean"
+    "test-all": "npm run test-helpers && npm run test-daily && npm run test-weekly && npm run test-clean",
+    "radar": "node scripts/radar-standalone.js",
+    "radar-test": "node scripts/test-radar.js",
+    "radar-dev": "NODE_ENV=development node scripts/radar-integration.js",
+    "radar-standalone": "node scripts/radar-standalone.js"
   },
   "husky": {
     "hooks": {
@@ -40,6 +44,7 @@
     "emoji-regex": "^9.0.0",
     "fs-extra": "^9.0.1",
     "ip": "^1.1.5",
+    "js-yaml": "^4.1.1",
     "ms": "^2.1.2",
     "parse-link-header": "^1.0.1",
     "promise-retry": "^2.0.1",
@@ -48,7 +53,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "eslint": "^7.8.1",
     "husky": "^4.2.5",
     "lint-staged": "^10.3.0",
